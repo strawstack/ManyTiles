@@ -1,9 +1,18 @@
-class Object {
-    constructor(room) {
+class Events {
+    constructor() {
+        this._events = {};
+    }
+    set(type, callback) {
+        this._events[type] = callback;
+    }
+}
+
+class CObject {
+    constructor(room, name) {
         this._room = room;
 
         // Defaults
-        this._name = "";
+        this._name = name;
         this._isWall = false;
         this._isAgent = false;
         this._event = () => {};
@@ -12,7 +21,35 @@ class Object {
         this._position = undefined;
     }
     set(prop) {
-        
+        if ("name" in prop) {
+            // Remove old name
+            delete this._room._objects[this._name];
+            // Get new name
+            let new_name = prop["name"];
+            // Point new name to this object
+            this._room._objects[new_name] = this;
+            // Assign new name to this object
+            this._name = new_name;
+        }
+        if ("isAgent" in prop) {
+            this._isAgent = prop["isAgent"];
+        }
+        if ("position" in prop) {
+            let pos = prop["position"];
+            this._position = {'r': pos['r'], 'c': pos['c']};
+        }
+        if ("isWall" in prop) {
+            this._isWall = prop["isWall"];
+        }
+        if ("event" in prop) {
+            this._event = prop["event"];
+        }
+        if ("icon" in prop) {
+            this._icon = prop["icon"];
+        }
+        if ("type" in prop) {
+            this._type = prop["type"];
+        }
     }
 }
 
@@ -26,6 +63,13 @@ class Room {
         // Defaults
         this._name = name;
         this._size = {'r': 5, 'c': 5};
+    }
+    newObject() {
+        let count = Object.keys(this._objects).length.toString();
+        let name = "Object_" + count;
+        let obj = new CObject(this, name);
+        this._objects[name] = obj;
+        return obj;
     }
     set(prop) {
         if ("name" in prop) {
@@ -57,9 +101,17 @@ class ManyTiles {
         // Name of the room to show
         this._show = "";
 
-        // Setup EventListeners
-        // Keypress
-        // Mouse click
+        // Type level events
+        this.events = new Events();
+
+        // Global EventListeners
+        window.addEventListener("click", e => {
+            console.log("click event");
+        });
+
+        window.addEventListener("keydown", e => {
+            console.log("keydown event");
+        });
 
     }
     newRoom() {

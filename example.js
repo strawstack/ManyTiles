@@ -12,9 +12,9 @@ function main() {
 
     // Create Agent
     let agent = room.newObject();
-    obj.set({"name": "Agent"});
-    obj.set({"isAgent": true});
-    obj.set({"position": {'r': 0, 'c': 0}});
+    agent.set({"name": "Agent"});
+    agent.set({"isAgent": true});
+    agent.set({"position": {'r': 0, 'c': 0}});
 
     // Create coin object
     let obj = room.newObject();
@@ -39,7 +39,7 @@ function main() {
         });
     }
 
-    // Type level behaviours
+    // Type level events
     world.events.set("custom_class_coin", object_id => console.log("type level behaviour for coins. Object:", object_id));
 
     world.events.set("custom_class_wall", object_id => console.log("type level behaviour for walls. Object:", object_id));
