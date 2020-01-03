@@ -1,9 +1,51 @@
+@font-face {
+    font-family: "Dimis";
+    src: url('dimitri/DIMIS___.ttf')  format('truetype');
+}
+@font-face {
+    font-family: "Dimitri";
+    src: url('dimitri/DIMITRI_.ttf')  format('truetype');
+}
 html, body {
     padding: 0px;
     margin: 0px;
     height: 100%;
 }
-
+.world-name, .room-name {
+    text-align: center;
+}
+.world-name {
+    font-family: "Dimis";
+    font-size: 4em;
+}
+.room-name {
+    font-family: "Dimitri";
+    font-size: 2em;
+}
 .page-area {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grid-container {
+    width: 300px;
+    border-left: 1px dashed #DDD;
+    border-top: 1px dashed #DDD;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cell {
+    position: relative;
+    height: 49px;
+    width: 49px;
+    border-right: 1px dashed #DDD;
+    border-bottom: 1px dashed #DDD;
+}
+.object {
+    height: 49px;
+    width: 49px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
 }

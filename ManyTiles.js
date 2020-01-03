@@ -8,11 +8,12 @@ class Events {
 }
 
 class CObject {
-    constructor(room, name) {
+    constructor(room, name, uid) {
         this._room = room;
 
         // Defaults
         this._name = name;
+        this._uid = uid;
         this._isWall = false;
         this._isAgent = false;
         this._event = () => {};
@@ -22,14 +23,8 @@ class CObject {
     }
     set(prop) {
         if ("name" in prop) {
-            // Remove old name
-            delete this._room._objects[this._name];
-            // Get new name
-            let new_name = prop["name"];
-            // Point new name to this object
-            this._room._objects[new_name] = this;
             // Assign new name to this object
-            this._name = new_name;
+            this._name = prop["name"];
         }
         if ("isAgent" in prop) {
             this._isAgent = prop["isAgent"];
@@ -60,15 +55,17 @@ class Room {
         // Map of objects: name -> properties object
         this._objects = {};
 
+        this._uid = 0;
+
         // Defaults
         this._name = name;
         this._size = {'r': 5, 'c': 5};
     }
     newObject() {
-        let count = Object.keys(this._objects).length.toString();
-        let name = "Object_" + count;
-        let obj = new CObject(this, name);
-        this._objects[name] = obj;
+        let name = "Object_" + this._uid;
+        let obj = new CObject(this, name, this._uid);
+        this._objects[this._uid] = obj;
+        this._uid += 1;
         return obj;
     }
     set(prop) {
@@ -94,7 +91,11 @@ class Room {
 }
 
 class ManyTiles {
-    constructor() {
+    constructor(name) {
+        // Set world name
+        if (name == undefined) name = "Project Title";
+        this._name = name;
+
         // Map of rooms: name -> properties object
         this._rooms = {};
 
@@ -111,8 +112,42 @@ class ManyTiles {
 
         window.addEventListener("keydown", e => {
             console.log("keydown event");
+
+            // For each agent
+
+                // Predict next coordinate
+
+                // Check bounds
+
+                // Check walkable
+
+                // Optionally move agent
+
+                // Call item event
+
+                // Call type level events
+
+            // Call render
+
+            // Trigger text box queue
+            // NOTE - all state updates occur first
+            // render occurs
+            // text is shown to the user
+            // The user must click through text boxes
+            // before game becomes interactable again
         });
 
+        // Link to dom elements
+        this._worldName = document.querySelector(".world-name");
+        this._roomName = document.querySelector(".room-name");
+        this._pageArea = document.querySelector(".page-area");
+        this._gridContainer = this._createContainer();
+        this._pageArea.appendChild(this._gridContainer);
+    }
+    _createContainer() {
+        let div = document.createElement("div");
+        div.className = "grid-container";
+        return div;
     }
     newRoom() {
         let count = Object.keys(this._rooms).length.toString();
@@ -121,11 +156,77 @@ class ManyTiles {
         this._rooms[name] = room;
         return room;
     }
-    showRoom(name) {
-        this._show = name;
+    showRoom(room) {
+        this._show = room._name;
         this._render();
     }
     _render() {
         // Render the current room and objects
+        let room = this._rooms[this._show];
+
+        // Room not ready
+        if (room == undefined) return;
+
+        // Properties of room
+        let name = room._name;
+        let row = room._size.r;
+        let col = room._size.c;
+
+        // Set world name and room name
+        this._worldName.innerHTML = this._name;
+        this._roomName.innerHTML  = name;
+
+        // Clear existing world
+        while (this._gridContainer.firstChild) {
+          this._gridContainer.firstChild.removeChild(
+              this._gridContainer.firstChild);
+        }
+
+        // Store list of grid cells
+        let grid = [];
+
+        // Adjust grid container width
+        this._gridContainer.style.width = (col * 50).toString() + "px";
+
+        // Create grid
+        for (let r=0; r < row; r++) {
+            for (let c=0; c < col; c++) {
+                let cell = this._createCell();
+                grid.push(cell);
+                this._gridContainer.appendChild(cell);
+            }
+        }
+
+        // Place objects
+        for (let key in room._objects) {
+            let obj = room._objects[key];
+            let cell = grid[
+                this._coordinateToNumber(room, obj._position)];
+            cell.appendChild(this._createObject(cell, obj));
+        }
+
+        // Place player
+    }
+    _createCell() {
+        let div = document.createElement("div");
+        div.className = "cell";
+        return div;
+    }
+    _numberToCoordinate(room, number) {
+        let c = number % room._size.c;
+        if (c < 0) {
+            c += room._size.c;
+        }
+        return [
+            Math.floor(number/room._size.c), c
+        ];
+    }
+    _coordinateToNumber(room, coordinate) {
+        return (coordinate.r * room._size.c) + coordinate.c;
+    }
+    _createObject(cell, obj) {
+        let _obj = document.createElement("i");
+        _obj.className = "object " + obj._icon + " " + obj._type;
+        return _obj;
     }
 }
