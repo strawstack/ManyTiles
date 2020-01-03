@@ -111,11 +111,41 @@ class ManyTiles {
         });
 
         window.addEventListener("keydown", e => {
-            console.log("keydown event");
 
-            // For each agent
+            let moveKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "w", "d", "s", "a"];
+
+            // Key must be a move key
+            if (moveKeys.indexOf(e.key) == -1) return;
+
+            let move = {
+                "ArrowUp": [-1, 0],
+                "ArrowRight": [0, 1],
+                "ArrowDown": [1, 0],
+                "ArrowLeft": [0, -1],
+                "w": [-1, 0],
+                "d": [0, 1],
+                "s": [1, 0],
+                "a": [0, -1]
+            };
+
+            // Get current room
+            let room = this._rooms[this._show];
+
+            // List agents in current room
+            let agents = Object.values(room._objects).filter(
+                x => x._isAgent);
+
+            // For each agent...
+            for (let agent of agents) {
+
+                // Current location of agent
+                let cLoc = agent._position;
 
                 // Predict next coordinate
+                let nxNumber = 
+
+                // Ref to next cell
+
 
                 // Check bounds
 
@@ -125,7 +155,8 @@ class ManyTiles {
 
                 // Call item event
 
-                // Call type level events
+                // Call type level event
+            }
 
             // Call render
 

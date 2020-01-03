@@ -19,3 +19,10 @@ The **ManyTiles framework** makes it easy to create an interactive web-based 2D 
 
 
 # Example Project
+
+# Dev Notes
+
+- [ ] Text box queue
+    - [ ] Load queue with text objects
+    - [ ] When called, show text box one after the other
+    - [ ] Highlight speaker/source
