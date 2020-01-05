@@ -17,6 +17,7 @@ The **ManyTiles framework** makes it easy to create an interactive web-based 2D 
 
 # Screenshots
 
+![](./screenshot.png)
 
 # Example Project
 
