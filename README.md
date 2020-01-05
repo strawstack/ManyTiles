@@ -22,7 +22,19 @@ The **ManyTiles framework** makes it easy to create an interactive web-based 2D 
 
 # Dev Notes
 
-- [ ] Text box queue
-    - [ ] Load queue with text objects
-    - [ ] When called, show text box one after the other
-    - [ ] Highlight speaker/source
+- [ ] Highlight speaker/source
+- [ ] Chunk text by words
+- [ ] Inventory system
+    - [ ] Events can check inventory for items
+    - [ ] Inventory items are shown in inventory below textbox area
+
+- [x] Note, on enter press, world should check in with dialogue system and render the next line of dialogue if something is in progress
+- [x] Objects should freeze during dialogue
+- [x] Text box system
+- [x] Load queue with text objects
+- [x] When called, show text box one after the other
+
+
+
+# Lorem Ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.

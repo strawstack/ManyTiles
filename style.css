@@ -10,6 +10,7 @@ html, body {
     padding: 0px;
     margin: 0px;
     height: 100%;
+    color: #333;
 }
 .world-name, .room-name {
     text-align: center;
@@ -26,6 +27,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .grid-container {
     width: 300px;
@@ -48,4 +50,45 @@ html, body {
     justify-content: center;
     align-items: center;
     font-size: 2em;
+}
+.textbox-area {
+    margin-top: 30px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.textbox-container {
+    background: #333;
+    height: 100px;
+    width: 500px;
+}
+.textbox {
+    height: 70px; /* 100 - 5 * 2 - 10 */
+    width: 470px; /* 400 - 5 * 2 - 10 */
+    border: 5px solid white;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding: 5px;
+    color: white;
+    font-family: "courier new";
+    font-weight: bold;
+    font-size: 1.1em;
+    position: relative;
+}
+.textbox::after {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    color: #3dfafb;
+    text-shadow: 2px 2px 2px #3dfafb78;
+}
+.textbox.enter::after {
+    content: "Enter ↵";
+}
+.textbox.last::after {
+    content: "☐";
+}
+.highlight {
+    background-color: rgba(255, 180, 67, 0.5);
 }
