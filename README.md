@@ -1,6 +1,6 @@
 # ManyTiles
 
-The **ManyTiles framework** makes it easy to create an interactive web-based 2D tile project. **ManyTiles**, at its core, is a 2D grid of tiles onto which an `agent` is rendered. The `agent` can move in four directions around the grid to explore tiles. Tiles can be configured prevent movement or trigger *events* which hook into arbitrary user code to modify the state of the project.
+The **ManyTiles framework** makes it easy to create an interactive web-based 2D tile project. **ManyTiles**, at its core, is a 2D grid of tiles onto which an `agent` is rendered. The `agent` can move in four directions around the grid to explore tiles. Tiles can be configured to prevent movement or trigger *events*, which hook into arbitrary user code to modify the state of the project.
 
 # Use Cases
 
