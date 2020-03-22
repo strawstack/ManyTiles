@@ -18,7 +18,7 @@ The **ManyTiles framework** makes it easy to create an interactive web-based 2D 
 
 # Screenshots
 
-![](./screenshot2.png)
+[![](./screenshot2.png)](https://regularmemory.blog/ManyTiles/)
 
 # Dev Notes
 - [ ] Inventory system
