@@ -12,9 +12,9 @@ The **ManyTiles framework** makes it easy to create an interactive web-based 2D 
 - An Interactive Story Experience
 - Prototypes, and much more
 
-# Example Project
+# Live Demo
 
-Try the [live demo](http://regularmemory.blog/ManyTiles/)
+[View Live Demo](https://regularmemory.blog/ManyTiles/)
 
 # Screenshots
 
