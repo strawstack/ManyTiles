@@ -14,11 +14,11 @@ The **ManyTiles framework** makes it easy to create an interactive web-based 2D 
 
 # Live Demo
 
-[View Live Demo](https://regularmemory.blog/ManyTiles/)
+[View Live Demo](https://strawstack.github.io/ManyTiles/)
 
 # Screenshots
 
-[![](./screenshot2.png)](https://regularmemory.blog/ManyTiles/)
+[![](./screenshot2.png)](https://strawstack.github.io/ManyTiles/)
 
 # Dev Notes
 - [ ] Inventory system
